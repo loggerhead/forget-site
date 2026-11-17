@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ForgetSite 隐私政策</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #f6f8fb;
+        --card: #ffffff;
+        --text: #111827;
+        --muted: #4b5563;
+        --border: #e5e7eb;
+        --accent: #16a34a;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #0f1115;
+          --card: #171a21;
+          --text: #e5e7eb;
+          --muted: #9ca3af;
+          --border: #2a2f3a;
+          --accent: #4ade80;
+        }
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font: 16px/1.75 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      }
+      main {
+        max-width: 780px;
+        margin: 0 auto;
+        padding: 56px 24px 80px;
+      }
+      header {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 8px;
+      }
+      .logo {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        background: #111827;
+        color: #22c55e;
+        display: grid;
+        place-items: center;
+        font-size: 26px;
+        line-height: 1;
+      }
+      h1 { font-size: 30px; margin: 0; }
+      .updated { color: var(--muted); font-size: 14px; margin: 0 0 28px 58px; }
+      section {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 22px 26px;
+        margin: 16px 0;
+      }
+      h2 { font-size: 19px; margin: 0 0 10px; }
+      h3 { font-size: 16px; margin: 18px 0 6px; }
+      p, li { color: var(--text); }
+      ul { padding-left: 22px; margin: 8px 0; }
+      li { margin: 4px 0; }
+      code {
+        background: rgba(127, 127, 127, 0.14);
+        border-radius: 5px;
+        padding: 1px 5px;
+        font-size: 14px;
+      }
+      a { color: var(--accent); }
+      .summary {
+        border-left: 4px solid var(--accent);
+      }
+      footer { color: var(--muted); font-size: 14px; margin-top: 28px; }
+      @media (max-width: 520px) {
+        main { padding-top: 36px; }
+        h1 { font-size: 24px; }
+        section { padding: 18px; }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <span class="logo" aria-hidden="true">◷</span>
+        <h1>ForgetSite 隐私政策</h1>
+      </header>
+      <p class="updated">生效日期：2026-11-17</p>
+
+      <section class="summary">
+        <h2>概要</h2>
+        <p>
+          ForgetSite 是一个 Chrome 扩展，用于按域名定期删除 Chrome 浏览历史。
+          本扩展不运营任何服务器，不包含统计、广告或追踪代码，也不会把你的浏览历史、
+          标签页地址或设置上传到任何地方。所有数据仅在你的设备本地处理。
+        </p>
+      </section>
+
+      <section>
+        <h2>1. 本扩展访问的数据</h2>
+        <h3>1.1 浏览历史</h3>
+        <p>
+          当你配置了清理规则后，本扩展会通过 Chrome 的 <code>history</code> API
+          查询与规则域名匹配的历史记录（包括 URL、标题和访问时间），并删除这些记录。
+          查询和删除都在本地完成，不会上传任何历史数据。
+        </p>
+        <h3>1.2 当前标签页地址</h3>
+        <p>
+          当你打开扩展弹窗、使用右键菜单或按下快捷键时，本扩展会读取当前标签页的 URL，
+          以便识别并建议当前网站域名。本扩展不会读取页面内容、表单、密码或 Cookie。
+        </p>
+        <h3>1.3 设置</h3>
+        <p>
+          清理规则（域名、周期、上次清理时间、删除条数）保存在
+          <code>chrome.storage.local</code> 中，仅用于在本机展示和执行这些规则。
+        </p>
+      </section>
+
+      <section>
+        <h2>2. 数据的使用与共享</h2>
+        <ul>
+          <li>仅用于实现本扩展的单一用途：按你设置的域名和周期删除浏览历史。</li>
+          <li>不向任何服务器或第三方传输、出售、出租或共享数据。</li>
+          <li>不将数据用于广告、用户画像、信用评估或任何与扩展功能无关的用途。</li>
+          <li>不收集分析数据或崩溃报告。</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>3. 数据保留与删除</h2>
+        <ul>
+          <li>历史记录：按规则周期删除；你也可以随时在弹窗或设置页手动清理。</li>
+          <li>
+            规则与设置：保留在本机，直到你删除规则或卸载扩展。卸载扩展会删除
+            <code>chrome.storage.local</code> 中的数据。
+          </li>
+          <li>本扩展没有服务端副本，因此不存在服务端数据保留。</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>4. 权限说明</h2>
+        <ul>
+          <li><code>history</code>：查询并删除你配置的域名对应的浏览历史。</li>
+          <li><code>tabs</code>：读取当前标签页 URL，用于一键加入当前网站。</li>
+          <li><code>storage</code>：在本机保存清理规则。</li>
+          <li><code>alarms</code>：每 5 分钟检查一次到期规则。</li>
+          <li><code>contextMenus</code>：在页面右键菜单中提供加入清理列表的入口。</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>5. 你的控制</h2>
+        <ul>
+          <li>在设置页添加、编辑、删除规则，或立即清理。</li>
+          <li>在 <code>chrome://extensions</code> 中停用或卸载扩展。</li>
+          <li>
+            在 <code>chrome://settings/syncSetup</code> 中关闭“历史记录”同步，
+            以避免删除操作同步到同一账号的其他设备。
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>6. Chrome 同步说明</h2>
+        <p>
+          如果你开启了 Chrome 同步中的“历史记录”，通过 Chrome history API 执行的删除
+          可能会同步到同一账号的其他设备。这是 Chrome 自身的行为，与本扩展无关。
+        </p>
+      </section>
+
+      <section>
+        <h2>7. 儿童隐私</h2>
+        <p>本扩展不面向 13 岁以下儿童，也不会有意收集儿童数据。</p>
+      </section>
+
+      <section>
+        <h2>8. 政策变更</h2>
+        <p>如果本政策发生变更，我们会更新本页面顶部的生效日期。</p>
+      </section>
+
+      <section>
+        <h2>9. 联系方式</h2>
+        <p>
+          如有问题，请通过
+          <a href="https://github.com/loggerhead/forget-site/issues"
+            >GitHub Issues</a
+          >
+          联系。
+        </p>
+      </section>
+
+      <section>
+        <h2>English summary</h2>
+        <p>
+          ForgetSite deletes Chrome browsing history for domains you configure. It
+          runs entirely on your device: there are no servers, no analytics, no ads,
+          no tracking, and no transmission of browsing history, tab URLs, or
+          settings. History is accessed only through Chrome's history API to find
+          and delete entries matching your rules. Settings are stored in
+          <code>chrome.storage.local</code> and are removed when you uninstall the
+          extension. Contact:
+          <a href="https://github.com/loggerhead/forget-site/issues"
+            >GitHub Issues</a
+          >.
+        </p>
+      </section>
+
+      <footer>© 2026 ForgetSite</footer>
+    </main>
+  </body>
+</html>
