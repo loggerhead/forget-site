@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ForgetSite - 设置</title>
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="page-header">
+        <div>
+          <h1>ForgetSite</h1>
+          <p class="muted">
+            按域名定期删除 Chrome 浏览历史。规则仅保存在本机。
+          </p>
+        </div>
+        <button id="run-all" class="primary" type="button">
+          全部立即清理
+        </button>
+      </header>
+
+      <section class="card">
+        <h2>添加规则</h2>
+        <form id="add-form" class="add-form">
+          <label class="field grow">
+            <span>域名</span>
+            <input
+              id="add-domain"
+              type="text"
+              autocomplete="off"
+              spellcheck="false"
+              placeholder="example.com"
+            />
+          </label>
+          <label class="field">
+            <span>周期</span>
+            <div class="interval-input">
+              <input
+                id="add-interval"
+                type="number"
+                min="1"
+                step="1"
+                value="24"
+              />
+              <select id="add-unit">
+                <option value="h">小时</option>
+                <option value="d">天</option>
+              </select>
+            </div>
+          </label>
+          <button type="submit" class="primary">添加</button>
+        </form>
+        <p class="hint">
+          规则 <code>example.com</code> 会匹配 example.com 及其所有子域名。周期范围：1 小时 ~ 180 天。
+        </p>
+        <div id="add-status" class="status" aria-live="polite" hidden></div>
+      </section>
+
+      <section class="card">
+        <div class="section-head">
+          <h2>规则列表</h2>
+          <span id="rules-count" class="muted"></span>
+        </div>
+        <div id="rules-status" class="status" aria-live="polite" hidden></div>
+        <div id="rules-loading" class="muted">加载中…</div>
+        <div id="rules-empty" class="empty" hidden>还没有规则。</div>
+        <div id="rules-error" class="status error" hidden></div>
+        <div id="rules-list" class="rules"></div>
+      </section>
+
+      <section class="card">
+        <h2>默认周期</h2>
+        <p class="muted">
+          新增规则时使用的初始周期；不会修改已有规则。
+        </p>
+        <form id="default-form" class="add-form">
+          <label class="field">
+            <span>周期</span>
+            <div class="interval-input">
+              <input
+                id="default-interval"
+                type="number"
+                min="1"
+                step="1"
+                value="24"
+              />
+              <select id="default-unit">
+                <option value="h">小时</option>
+                <option value="d">天</option>
+              </select>
+            </div>
+          </label>
+          <button type="submit" class="secondary">保存默认值</button>
+        </form>
+        <div id="default-status" class="status" aria-live="polite" hidden></div>
+      </section>
+
+      <section class="card notes">
+        <h2>说明</h2>
+        <ul>
+          <li>清理只删除 Chrome 浏览历史，不删除 Cookie、缓存、下载记录、书签或密码。</li>
+          <li>Chrome 关闭时不会执行清理；下次启动后会补跑到期规则。</li>
+          <li>如果开启了 Chrome Sync，删除操作会同步到其他设备；只想本机删除请先关闭「历史记录」同步。</li>
+          <li>清理周期最小 1 小时，最长 180 天。后台每 5 分钟检查一次到期规则。</li>
+          <li>快捷键 <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>A</kbd> 可将当前网站直接加入列表，可在 <code>chrome://extensions/shortcuts</code> 修改。</li>
+        </ul>
+      </section>
+    </div>
+
+    <script type="module" src="options.js"></script>
+  </body>
+</html>

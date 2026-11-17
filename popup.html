@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ForgetSite</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="brand">
+        <span class="logo" aria-hidden="true">◷</span>
+        <div>
+          <h1>ForgetSite</h1>
+          <p class="subtitle">按域名定期清理浏览历史</p>
+        </div>
+      </div>
+      <button
+        id="open-options"
+        class="icon-button"
+        type="button"
+        title="管理规则"
+        aria-label="管理规则"
+      >
+        ⚙
+      </button>
+    </header>
+
+    <main>
+      <section class="card">
+        <h2>当前网站</h2>
+        <div id="current-loading" class="muted">读取中…</div>
+        <div id="current-error" class="status error" hidden></div>
+        <div id="current-unsupported" class="muted" hidden>
+          当前页面不是 http/https 页面，无法加入清理列表。
+        </div>
+
+        <div id="current-covered" hidden>
+          <p class="covered-text">
+            已被 <strong id="covered-domain"></strong> 规则覆盖
+          </p>
+          <div class="row-actions">
+            <button id="covered-run" class="primary" type="button">
+              立即清理
+            </button>
+            <button id="covered-remove" class="danger" type="button">
+              移除规则
+            </button>
+          </div>
+        </div>
+
+        <form id="add-form" hidden>
+          <label class="field">
+            <span>域名</span>
+            <input
+              id="add-domain"
+              type="text"
+              autocomplete="off"
+              spellcheck="false"
+              placeholder="example.com"
+            />
+          </label>
+          <p class="hint">匹配该域名及其所有子域名。</p>
+
+          <label class="field">
+            <span>清理周期</span>
+            <div class="interval-input">
+              <input
+                id="add-interval"
+                type="number"
+                min="1"
+                step="1"
+                value="24"
+              />
+              <select id="add-unit">
+                <option value="h">小时</option>
+                <option value="d">天</option>
+              </select>
+            </div>
+          </label>
+          <p class="hint">最小 1 小时，最长 180 天。</p>
+
+          <button type="submit" class="primary wide">加入清理列表</button>
+        </form>
+
+        <div id="current-status" class="status" aria-live="polite" hidden></div>
+      </section>
+
+      <section class="card">
+        <div class="section-head">
+          <h2>清理列表</h2>
+          <span id="rules-count" class="muted"></span>
+        </div>
+        <div id="rules-loading" class="muted">加载中…</div>
+        <div id="rules-empty" class="empty" hidden>
+          <p>还没有规则。</p>
+          <p class="muted">打开目标网站，点击上面的按钮即可加入。</p>
+        </div>
+        <div id="rules-list" class="rules-list" hidden></div>
+        <div id="rules-error" class="status error" hidden></div>
+      </section>
+    </main>
+
+    <footer>
+      <span>规则仅保存在本机</span>
+      <button id="open-options-footer" class="link-button" type="button">
+        管理全部规则
+      </button>
+    </footer>
+
+    <script type="module" src="popup.js"></script>
+  </body>
+</html>
